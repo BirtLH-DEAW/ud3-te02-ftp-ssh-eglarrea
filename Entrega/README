@@ -1,1 +1,13 @@
 Incluid en esta carpeta todos los ficheros necesarios para el despliegue de vuestro proyecto.
+
+Crear imagen
+docker build -t larreamanzanoegoitzdeaw0302 . 
+
+Arrancar contenedor
+docker run -itd --name larreamanzanoegoitzdeaw0302 -p 21:21 -p 50000-50030:50000-50030 -p 8080:80 -p 443:443 -p 33:33 larreamanzanoegoitzdeaw0302  
+
+Entrar en el contendor
+docker exec -it <id_contenedor> bash   
+
+Arrancar ssh
+service ssh start
