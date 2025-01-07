@@ -27,11 +27,14 @@ COPY ["/ftp/tls.conf", "/etc/proftpd/tls.conf"]
 COPY ["/ftp/modules.conf", "/etc/proftpd/modules.conf"]
 COPY ["/ssh/sshd_config", "/etc/ssh/sshd_config"]
 
-#ID_RSA DE BIRT
-ADD ["/ssh/id_rsa", "/root/.ssh/id_rsa"] 
+##Descargar proyecto del repositorio privado birt
+#ADD ["/ssh/id_rsa", "/root/.ssh/id_rsa"] 
 
-#ID_RSA CREADO POR MI UN REPOSITORIO PRIVADO CON EL MISMO PROYECTO QUE TIENE BIRT
+## Descargar proyecto del repositorio privado creado por mi
 #ADD ["/sshpropio/id_rsa", "/root/.ssh/id_rsa"] 
+
+## Descargar proyecto del repositorio privado con develop Key
+ADD ["/deployKey/id_rsa", "/root/.ssh/id_rsa"] 
 
 # Movemos los archivos a sus ubicaciones adecuadas
 RUN mv /indexPrimero.html /var/www/html/sitioPrimero/index.html && \
@@ -55,9 +58,12 @@ RUN eval "$(ssh-agent -s)" \
 && chmod 700 /root/.ssh/id_rsa  \
 && ssh-add /root/.ssh/id_rsa  \
 && ssh-keyscan -H github.com >> /root/.ssh/known_hosts \
+## Descargar proyecto del repositorio privado creado por mi
 #&& git clone git@github.com:eglarrea/Larrea_Manzano_Egoitz_DEAW03_02.git /srv/ftp/proyecto
-&& git clone git@github.com:deaw-birt/UD3-ftp_anonimo.git /srv/ftp/proyecto
-
+## Descargar proyecto del repositorio privado birt
+#&& git clone git@github.com:deaw-birt/UD3-ftp_anonimo.git /srv/ftp/proyecto
+## Descargar proyecto del repositorio privado con develop Key
+&& git clone git@github.com:eglarrea/eglarrea-Larrea_Manzano_Egoitz_DEAW03_02_.git /srv/ftp/proyecto
 
 # Exponemos los puetoscd
 EXPOSE 80
