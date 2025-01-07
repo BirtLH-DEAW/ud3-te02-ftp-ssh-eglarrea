@@ -9,7 +9,8 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-#Include /etc/ssh/sshd_config.d/*.conf
+#Para version lastes de ubuntu descomentar
+Include /etc/ssh/sshd_config.d/*.conf
 
 Port 33
 #AddressFamily any
@@ -120,3 +121,10 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
+#Subsystem sftp internal-sftp
+#Match User eglarrea2
+#ChrootDirectory /var/www/html
+#AllowTcpForwarding no
+#ForceCommand internal-sftp
+#X11Forwarding no
